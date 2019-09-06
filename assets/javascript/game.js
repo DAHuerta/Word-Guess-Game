@@ -1,8 +1,8 @@
-var horrorMovies = ["it", "it follows", "martyrs", "evil dead", "hereditary", "trick r treat", "sinister", "the conjuring", "reanimator", "mothman prophecies", "get out", "us", "the thing", "the shining", "butterfly effect", "the house of 1000 corpses", "the devils rejects", "popcorn", "nightmare on elmstreet", "halloween", "friday the 13th", "poultrygeist", "mothers day", "the decent", "seven", "pans labyrinth", "audition", "shutter", "the ring", "the babadook", "the exorcist", "cabin in the woods", "texas chainsaw massacre", "gacy", "behind the mask", "alien", "jaws", "chuckies", "leprechaun", "psycho", "midsommer", "insidious", "a quiet place", "the cabin in the woods", "cabin fever", "saw", "carrie", "the strangers", "silence of the lambs", "would you rather", "your next", "hatchet", "inside", "splinter", "the fog"
+var horrorMovies = ["it", "itfollows", "martyrs", "evildead", "hereditary", "trickrtreat", "sinister", "theconjuring", "reanimator", "mothmanprophecies", "getout", "us", "thething", "theshining", "butterflyeffect", "thehouseof1000corpses", "thedevilsrejects", "popcorn", "nightmareonelmstreet", "halloween", "fridaythe13th", "poultrygeist", "mothersday", "thedecent", "seven", "panslabyrinth", "audition", "shutter", "thering", "thebabadook", "theexorcist", "cabininthewoods", "texaschainsaw massacre", "gacy", "behindthemask", "alien", "jaws", "chuckies", "leprechaun", "psycho", "midsommer", "insidious", "aquietplace", "thecabininthewoods", "cabinfever", "saw", "carrie", "thestrangers", "silenceofthelambs", "wouldyourather", "yournext", "hatchet", "inside", "splinter", "thefog", "jeeperscreepers"
 ];
 
 var winCount = 0;
-var guessesRemainingCount = 8;
+var guessesRemainingCount = 9;
 
 var wins = document.getElementById("wins");
 var currentWord = document.getElementById("currentWord");
@@ -11,7 +11,7 @@ var lettersGuessed = document.getElementById("lettersGuessed");
 
 
 var selectedWord = [];
-var lettersGuessed =[];
+var lettersGuessedCount =[];
 
 document.onkeyup = function(event) {
 
@@ -20,20 +20,26 @@ document.onkeyup = function(event) {
     var word = horrorMovies[Math.floor(Math.random() * horrorMovies.length)];
     
     for (var i = 0; i < word.length; i++) {
-        selectedWord[i]= " _ "; 
+        selectedWord[i]= "_"; 
     }
 
-    if (guessesRemainingCount > 0) {
-        lettersGuessed.push(userGuess);
+    lettersGuessedCount.push(userGuess);
+
+    console.log(lettersGuessedCount);
+
+    if (userGuess === selectedWord) {
+        winCount++;
+    } else {
+        guessesRemainingCount--;
     }
 
     
     
 
     wins.textContent = "Wins: " + winCount;
-    currentWord.textContent = "Current Word: " + selectedWord;
+    currentWord.textContent = "Current Word: " + selectedWord.join(" ");
     guessesRemaining.textContent = "Number of guesses remaining: " + guessesRemainingCount;
-    lettersGuessed.textContent = "Letters Guessed: " + lettersGuessed;
+    lettersGuessed.textContent = "Letters Guessed: " + lettersGuessedCount;
     
     
 }
