@@ -15,12 +15,9 @@ var selectedWord = [];
 var lettersGuessedCount =[];
 var correctKeys = []
 
-//     function correctLetter(x) {
-//         var correctKeys = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-//     if (correctKeys.includes(x.toLowercase())){
-//         console.log("Begin Game!");
-//     } 
-// }
+var validChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+    
+
 function resetGame() {
     // pick a random word
     word = horrorMovies[Math.floor(Math.random() * horrorMovies.length)];
@@ -46,6 +43,12 @@ function winsLosses() {
         alert("YOU LOSE!");
         resetGame();
     }
+
+    if (winCount === 10) {
+        alert("CONGRATS! YOU WIN!")
+        winCount = 0
+        resetGame()
+    }
             
     }
 }
@@ -54,45 +57,48 @@ function winsLosses() {
 
   document.onkeyup = function(event) {
 
-    var userGuess = event.key;
+    var userGuess = (event.key).toLowerCase();
 
-    console.log(word)
-    var remainingLetters = word.length;
-
-    if (remainingLetters > 0) {
-        console.log(remainingLetters);
-        
-        
-        for (var j = 0; j < word.length; j++) {
+    if (validChoices.indexOf(userGuess.toLowerCase()) !== -1) {
             
-            if (word[j] === userGuess) {
-                selectedWord[j] = userGuess;
+        console.log(word)
+        var remainingLetters = word.length;
+        
+        if (remainingLetters > 0) {
+            console.log(remainingLetters);
+            
+            
+            for (var j = 0; j < word.length; j++) {
+                
+                if (word[j] === userGuess) {
+                    selectedWord[j] = userGuess;
+                }
             }
+            
+            lettersGuessedCount.push(userGuess);
+            
+            console.log(lettersGuessedCount)
+            
         }
         
-        lettersGuessedCount.push(userGuess);
+        if (word.indexOf(userGuess) === -1) {
+            guessesRemainingCount--;
+        }
         
-        console.log(lettersGuessedCount)
-            
-    }
-
-    if (word.indexOf(userGuess) === -1) {
-        guessesRemainingCount--;
-    }
-   
-    winsLosses()
+        winsLosses()
         
         wins.textContent = "Wins: " + winCount;
         currentWord.textContent = "Current Word: " + selectedWord.join("");
         guessesRemaining.textContent = "Number of guesses remaining: " + guessesRemainingCount;
         lettersGuessed.textContent = "Letters Guessed: " + lettersGuessedCount;
-    
+        
+    }
 }
-// create an array of horror movies
-
-// create wins and losses variable
-
-// create letters guessed and tries remaining variable
-
+    // create an array of horror movies
+    
+    // create wins and losses variable
+    
+    // create letters guessed and tries remaining variable
+    
 // create if and else rules of the game
 
