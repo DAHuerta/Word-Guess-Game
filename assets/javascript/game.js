@@ -88,7 +88,7 @@ function winsLosses() {
         winsLosses()
         
         wins.textContent = "Wins: " + winCount;
-        currentWord.textContent = "Current Word: " + selectedWord.join("");
+        currentWord.textContent = "Current Word: " + selectedWord.join(" ");
         guessesRemaining.textContent = "Number of guesses remaining: " + guessesRemainingCount;
         lettersGuessed.textContent = "Letters Guessed: " + lettersGuessedCount;
         
