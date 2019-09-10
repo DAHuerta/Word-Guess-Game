@@ -1,0 +1,27 @@
+body {
+    background: black;
+    text-align: center;
+}
+
+p {
+    color: white;
+}
+
+.container {
+    border: 4px solid red;
+    width: 850px;
+    position: relative;
+    left: 190px; 
+}
+
+#hangman {
+    z-index: 10;
+    position: relative;
+    top: -15px;
+    left: 65px;
+}
+
+#horrorMovies {
+    position: relative;
+    right: 55px;
+}
